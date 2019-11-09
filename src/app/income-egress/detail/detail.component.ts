@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
 import { IncomeEgress } from '../income-egress.model';
 import { Subscription } from 'rxjs';
 import { IncomeEgressService } from '../income-egress.service';
 import Swal from 'sweetalert2';
+import { AppStateIncomeEgress } from '../income-egress.reducer';
 
 @Component({
   selector: 'app-detail',
@@ -17,7 +17,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
 
   constructor(
-    private store: Store<AppState>,
+    private store: Store<AppStateIncomeEgress>,
     public incomeEgressService: IncomeEgressService
   ) { }
 

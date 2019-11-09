@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
 import { IncomeEgress } from '../income-egress.model';
+import { AppStateIncomeEgress } from '../income-egress.reducer';
 
 @Component({
   selector: 'app-statistic',
@@ -19,7 +19,7 @@ export class StatisticComponent implements OnInit {
   public doughnutChartLabels: string[] = ['Ingresos', 'Egresos'];
   public doughnutChartData: number[] = [];
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppStateIncomeEgress>) { }
 
   ngOnInit() {
     this.store.select('incomeEgress')

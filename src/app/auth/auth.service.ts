@@ -69,8 +69,10 @@ export class AuthService {
     this.store.dispatch(new ActiveLoadingAction());
     this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(resp => {
-        this.store.dispatch(new DeactiveLoadingAction());
         this.router.navigate(['/dashboard']);
+        setTimeout(() => {
+          this.store.dispatch(new DeactiveLoadingAction());
+        }, 500);
       })
       .catch(error => {
         this.store.dispatch(new DeactiveLoadingAction());

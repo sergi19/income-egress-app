@@ -1,8 +1,13 @@
 import * as fromIncomEgress from './income-egress.actions';
 import { IncomeEgress } from './income-egress.model';
+import { AppState } from '../app.reducer';
 
 export interface IncomeEgressState {
     items: IncomeEgress[]
+}
+
+export interface AppStateIncomeEgress extends AppState {
+    incomeEgress: IncomeEgressState;
 }
 
 const initialState: IncomeEgressState = {
