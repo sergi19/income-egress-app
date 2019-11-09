@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IncomeEgress } from '../income-egress.model';
 import { AppStateIncomeEgress } from '../income-egress.reducer';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
-  styleUrls: ['./statistic.component.css']
+  styleUrls: []
 })
 export class StatisticComponent implements OnInit {
 
@@ -19,10 +20,12 @@ export class StatisticComponent implements OnInit {
   public doughnutChartLabels: string[] = ['Ingresos', 'Egresos'];
   public doughnutChartData: number[] = [];
 
+  subscription: Subscription = new Subscription();
+
   constructor(private store: Store<AppStateIncomeEgress>) { }
 
   ngOnInit() {
-    this.store.select('incomeEgress')
+    this.subscription = this.store.select('incomeEgress')
       .subscribe(incomeEgress => {
         this.getInfoIncomeEgress(incomeEgress.items);
       });

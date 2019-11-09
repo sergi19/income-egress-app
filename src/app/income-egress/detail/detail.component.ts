@@ -9,7 +9,7 @@ import { AppStateIncomeEgress } from '../income-egress.reducer';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  styleUrls: []
 })
 export class DetailComponent implements OnInit, OnDestroy {
 
@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.store.select('incomeEgress')
+    this.subscription = this.store.select('incomeEgress')
       .subscribe(incomeEgress => {
         this.items = incomeEgress.items;
       })

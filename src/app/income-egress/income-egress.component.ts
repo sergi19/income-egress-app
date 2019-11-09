@@ -4,14 +4,14 @@ import { IncomeEgress } from './income-egress.model';
 import { IncomeEgressService } from './income-egress.service';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
 import { ActiveLoadingAction, DeactiveLoadingAction } from '../shared/ui.actions';
 import { Subscription } from 'rxjs';
+import { AppStateIncomeEgress } from './income-egress.reducer';
 
 @Component({
   selector: 'app-income-egress',
   templateUrl: './income-egress.component.html',
-  styleUrls: ['./income-egress.component.css']
+  styleUrls: []
 })
 export class IncomeEgressComponent implements OnInit, OnDestroy {
 
@@ -22,7 +22,7 @@ export class IncomeEgressComponent implements OnInit, OnDestroy {
 
   constructor(
     private incomeEgressService: IncomeEgressService,
-    private store: Store<AppState>
+    private store: Store<AppStateIncomeEgress>
   ) { }
 
   ngOnInit() {

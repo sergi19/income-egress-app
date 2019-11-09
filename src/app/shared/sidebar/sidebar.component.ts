@@ -7,6 +7,7 @@ import { UnsetUserAction } from 'src/app/auth/auth.actions';
 import { UnsetItemsAction } from 'src/app/income-egress/income-egress.actions';
 import { IncomeEgressService } from 'src/app/income-egress/income-egress.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,7 +22,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
     public incomeEgressService: IncomeEgressService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       .pipe(
         filter(auth => auth.user !== null)
       )
-      .subscribe((auth: any) => this.nameSession = auth.user ? auth.user.name : null);
+      .subscribe((auth: any) => this.nameSession = auth.user.name);
   }
 
   ngOnDestroy() {
@@ -40,5 +42,4 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.incomeEgressService.cancelSubscriptions();
   }
-
 }
